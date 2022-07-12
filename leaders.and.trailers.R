@@ -66,18 +66,13 @@ tr.uni$is.genomic <- F
 ## 1.) Very long TRs
 tr.uni$is.genomic[ tr.uni$TR.width > (l_genome - 1000) ] <- T
 
-## 2.) Full ORF1ab 
-tr.uni$is.genomic[
-       is.element(tr.uni$TR_ID,   orf1ab.full.data$TR_ID)
-   #&  is.element(tr.uni$cluster, c('non5_non3', 'non5_3')) ->> same result when we filter out TRs with a JS after the TRS-L
-       ] <- T
 
-## 3.) 3-end of ORF1ab (10 nt) and no leader
+## 2.) 3-end of ORF1ab (10 nt) and no leader
 #tr.uni$is.genomic[tr.uni$TR.leader == F & is.element(tr.uni$TR_ID, orf1ab.frag.data$TR_ID)] <- T
 genomic.tr <- unique(all.data$TR_ID[is.element(all.data$EX_ID, ex.sp$EX_ID[ex.sp$start <= 21542 & ex.sp$end >= 29000 ])])
 tr.uni$is.genomic[is.element(tr.uni$TR_ID, genomic.tr)] <- T
   
-## 4.) Any 10-nt fragment of ORF1ab
+## 3.) Any 10-nt fragment of ORF1ab
 tr.uni$is.genomic[is.element(tr.uni$TR_ID, orf1ab.frag.data$TR_ID)] <- T
 
 ### Subgenomic reads
@@ -88,6 +83,7 @@ tr.uni$is.subgenomic[is.element(tr.uni$cluster, c('5_3', '5_non3')) &
 
 table(tr.uni[,c("is.genomic", "is.subgenomic")] )
 
+### Number of exons in TRs
 
 #tr.pos <- dplyr::select(tr.uni,c(TR_ID, TR.start, TR.end, is.genomic))
 #tr.pos <- spread(all.data[,c(1,6,7,8,9,10,17,18,19,21)], pos_nr, pos)
@@ -96,10 +92,16 @@ tr.pos <- spread(tr.pos, pos_nr, pos)
 tr.pos <- tr.pos[,c(colnames(tr.pos)[1], cols)]
 tr.pos <- merge(dplyr::select(tr.uni, !cols), tr.pos, by='TR_ID')
 
+
+## merge with all.data
 all.data <- dplyr::select(all.data, !any_of(c( 'TR.start', 'TR.end', 'TR.width','is.genomic', 'is.subgenomic', 'num_switches', 'TR.trailer', 'cluster')))
 all.data <- merge(all.data, dplyr::select(tr.uni, c(TR_ID, TR.start, TR.end, TR.width, is.genomic, is.subgenomic, num_switches, TR.trailer, cluster)), by='TR_ID')
 
-### Number of exons in TRs
-
+## category of each read
+all.data$category <- NA
+all.data$category[ all.data$is.genomic == T & all.data$is.subgenomic == F ] <- 'genomic'
+all.data$category[ all.data$is.genomic == F & all.data$is.subgenomic == T ] <- 'sub-genomic'
+all.data$category[ all.data$is.genomic == T & all.data$is.subgenomic == T ] <- 'sub-genomic'
+all.data$category[is.na(all.data$category)] <- 'unclassified'
 
 ######### ALL DATA DATAFRAME READY!
