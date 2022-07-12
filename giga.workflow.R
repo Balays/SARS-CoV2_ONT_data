@@ -91,20 +91,12 @@ if (load) {load(save.data)} else {
   bam.sum <- bam.all %>% group_by(sample, strand) %>% summarise(count=n())
   
   #### ####
+}
 
-
-  ######  2. Cluster reads   ####
-  ## Cluster the reads on exact matching in the dataframe of alignments (bam.all)
-  source('cluster.reads.R')
+######  2. Cluster reads   ####
+## Cluster the reads on exact matching in the dataframe of alignments (bam.all)
+source('cluster.reads.R')
  
-  #### ####
-}
-
-if(!is.na(save.data)) {
-    save.image(save.data)
-}
-
-#all.data <- merge(tr.gt, all.exdf, by.x=c("start",  "end", "strand"), by.y=c("start.TR",  "end.TR", "strand.TR"), all=T)
 all.data <- merge(tr.gt, ex.sp[,c("EX_ID", by, "strand")], by.x=c("start",  "end", "strand"), by.y=c("start",  "end", "strand"), all=T)
 all.data <- merge(all.data, unique.data.frame(bam.filt[,c('qname', 'sample')]), by='qname', all=T)
 all.data <- all.data[!is.na(all.data$qname), ]
@@ -115,6 +107,13 @@ all.data <- merge(all.data, metafilt[,c("sample_name", "hpi", "Time")], by.x='sa
 all.data$tr.ORF <- NA
 
 TR.EX    <- unique.data.frame(all.data[,c("EX_ID", "TR_ID",by,"strand")]) 
+#### ####
+
+
+## save image
+if(!is.na(save.data)) {
+    save.image(save.data)
+}
 
 
 
