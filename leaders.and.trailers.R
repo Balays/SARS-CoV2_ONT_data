@@ -63,16 +63,7 @@ plyr::count(tr.uni$cluster)
 ### Genomic reads
 tr.uni$is.genomic <- F
 
-## 1.) Very long TRs
-tr.uni$is.genomic[ tr.uni$TR.width > (l_genome - 1000) ] <- T
-
-
-## 2.) 3-end of ORF1ab (10 nt) and no leader
-#tr.uni$is.genomic[tr.uni$TR.leader == F & is.element(tr.uni$TR_ID, orf1ab.frag.data$TR_ID)] <- T
-genomic.tr <- unique(all.data$TR_ID[is.element(all.data$EX_ID, ex.sp$EX_ID[ex.sp$start <= 21542 & ex.sp$end >= 29000 ])])
-tr.uni$is.genomic[is.element(tr.uni$TR_ID, genomic.tr)] <- T
-  
-## 3.) Any 10-nt fragment of ORF1ab
+## Any 10-nt fragment of ORF1ab
 tr.uni$is.genomic[is.element(tr.uni$TR_ID, orf1ab.frag.data$TR_ID)] <- T
 
 ### Subgenomic reads
