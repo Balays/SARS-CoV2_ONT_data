@@ -3,19 +3,13 @@
 
 ##### Filter .bam files?
 if (filter.bams) {
-  bam.flags <- read.delim('D:/odrive/Google Drive/my.R.packages/bam.flags.tsv')
+  
   bam.filt  <- get.best.aln(bam.all, bam.flags)
 } else {
   bam.filt <- bam.all
 }
 
-plyr::count(bam.filt$strand)
-plyr::count(bam.all$strand)
 
-
-if(!is.na(save.data)) {
-  save.image(save.data)
-}
 ############################
 
 #### Cluster reads into Transcripts ##### 
@@ -26,13 +20,15 @@ tr.df <- tidyr::pivot_wider(mtable[,c("seqnames", "qname", "position")], names_f
 #### omit full NA column
 tr.df <- tr.df[,apply(tr.df, 2, function(x) {length(x) != sum(is.na(x))}) ]
 
-ncol <- max(stri_count_regex(tr.df$NC_045512.2[], ',')) + 1
-cols <- paste0('position_', c(1:ncol))
-tr.df$NC_045512.2 <- gsub('c\\(', '', tr.df$NC_045512.2)
-tr.df$NC_045512.2 <- gsub('\\)',  '', tr.df$NC_045512.2)
-tr.df$NC_045512.2 <- gsub('\\"',  '', tr.df$NC_045512.2)
+tr.df <- as.data.frame(tr.df)
 
-tr.df  <- separate(tr.df, NC_045512.2, sep=', ', into = cols, fill = "right", extra='merge')
+ncol <- max(stri_count_regex(tr.df[,genome], ',')) + 1
+cols <- paste0('position_', c(1:ncol))
+tr.df[,genome] <- gsub('c\\(', '', tr.df[,genome])
+tr.df[,genome] <- gsub('\\)',  '', tr.df[,genome])
+tr.df[,genome] <- gsub('\\"',  '', tr.df[,genome])
+
+tr.df  <- separate(tr.df, genome, sep=', ', into = cols, fill = "right", extra='merge')
 tr.df  <- unite(tr.df, 'exon.composition', sep=';', cols, remove = F, na.rm = T)
 
 tr.uni <- unique.data.frame(tr.df[,-1])
