@@ -13,14 +13,12 @@ wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711375/SARS_COV2_inf_hpi14_bc24_C_pas
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711378/SARS_COV2_inf_hpi16_bc01_A_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711380/SARS_COV2_inf_hpi16_bc02_B_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711382/SARS_COV2_inf_hpi16_bc03_C_pass.bam
-wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711384/SARS_COV2_inf_hpi16_hpi24_unclassified_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711386/SARS_COV2_inf_hpi18_bc04_A_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711388/SARS_COV2_inf_hpi18_bc05_B_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711390/SARS_COV2_inf_hpi18_bc06_C_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711392/SARS_COV2_inf_hpi1_bc01_A_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711394/SARS_COV2_inf_hpi1_bc02_B_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711396/SARS_COV2_inf_hpi1_bc03_C_pass.bam
-wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711398/SARS_COV2_inf_hpi1_hpi6_uncassified_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711401/SARS_COV2_inf_hpi20_bc07_A_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711403/SARS_COV2_inf_hpi20_bc08_B_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711405/SARS_COV2_inf_hpi20_bc09_C_pass.bam
@@ -33,7 +31,6 @@ wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711418/SARS_COV2_inf_hpi2_bc06_C_pass
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711422/SARS_COV2_inf_hpi36_bc13_A_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711425/SARS_COV2_inf_hpi36_bc14_B_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711428/SARS_COV2_inf_hpi36_bc15_C_pass.bam
-wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711432/SARS_COV2_inf_hpi36_hpi96_unclassified_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711437/SARS_COV2_inf_hpi48_bc16_A_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711447/SARS_COV2_inf_hpi48_bc17_B_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711450/SARS_COV2_inf_hpi48_bc18_C_pass.bam
@@ -49,7 +46,6 @@ wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711470/SARS_COV2_inf_hpi72_bc21_C_pas
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711472/SARS_COV2_inf_hpi8_bc13_A_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711474/SARS_COV2_inf_hpi8_bc14_B_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711476/SARS_COV2_inf_hpi8_bc15_C_pass.bam
-wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711478/SARS_COV2_inf_hpi8_hpi14_unclassified_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711480/SARS_COV2_inf_hpi96_bc22_A_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711482/SARS_COV2_inf_hpi96_bc23_B_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711485/SARS_COV2_inf_hpi96_bc24_C_pass.bam
