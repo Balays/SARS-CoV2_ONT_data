@@ -5,11 +5,12 @@ The sequences can be found at:
 https://www.ebi.ac.uk/ena/browser/view/PRJEB51064
 
 The original *.bam* files (inital mapping) can be downloaded using the *PRJEB51064_SARS-CoV2_pass.download.sh* script, \
-then the *fastqfrombam.sh* script can be used to generate the *.fastq* files (containing the viral reads only), which, in turn can mapped to the reference genome using the *minimap.sh* executable. \
+then the *fastqfrombam.sh* script can be used to generate the *.fastq* files (containing the viral reads only), \
+which, in turn can mapped to the reference genome using the *minimap.sh* executable. \
 Alternatively, *.fastq* files (containing every *passed* reads) can be downloaded from ENA and mapped using *minimap.sh*
 
 The *gigasci.worklfow.R* contains the analysis of the reads, carried out in four steps: \
-1.) Import the *.bam* files (itt will rename them to match the *sample_name* column in the "metadata.tsv" file) \
+1.) Importing the *.bam* files (the original files will be renamed to match the *sample_name* column in the "metadata.tsv" file) \
 2.) Clustering the alignments into unique alignments, i.e. *Transcripts* \
 3.) Detection of "Leaders" and "Trailers"; Differentiating betweem *genomic* and *sub-genomic RNAs* \
 4.) Summing and statistics
@@ -23,6 +24,6 @@ For testing pourposes not every *.bam* file is required; the *PRJEB51064_SARS-Co
 
 The scripts can be used with other *.bam* files, reference genomes and/or parameters as well to import, filter and anyalze of alignments in *R*. For example to dereplicate alignments into *Transcripts*. The settings and the "metadata.tsv" file has to be modified accordingly.
 
-minimap2 has to be in the path for the mapping part ("minimap.sh"), the genome analysis toolkit (GATK) for the conversion of *.bam* files to *.fastq* ("fastqfrombam.sh"); and the required R packages must be installed before the scirpts can be run.
+*minimap2* has to be in the path for the mapping part ("minimap.sh"), the genome analysis toolkit (GATK) for the conversion of *.bam* files to *.fastq* ("fastqfrombam.sh"); and the required R packages must be installed before the scirpts can be run.
 
 
