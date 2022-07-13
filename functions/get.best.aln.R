@@ -6,7 +6,6 @@ get.best.aln <- function(bam, bam.flags, best.mapq=T, rm.supplementary=T, rm.sec
   
   require(tidyr)
   require(dplyr)
-  require(misc)
   require(stringr)
   
   bam.seq <- bam
