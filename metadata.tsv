@@ -47,4 +47,4 @@ SARS_COV2_inf_hpi14_bc24_C_pass	bc24	infected	NA	Hpi14	C	Hpi14_C	SARS_COV2_8h_14
 SARS_COV2_inf_hpi8_bc13_A_pass	bc13	infected	NA	Hpi8	A	Hpi8_A	SARS_COV2_8h_14h	8h	barcode13	hpi8_bc13_A	8
 SARS_COV2_inf_hpi8_bc14_B_pass	bc14	infected	NA	Hpi8	B	Hpi8_B	SARS_COV2_8h_14h	8h	barcode14	hpi8_bc14_B	8
 SARS_COV2_inf_hpi8_bc15_C_pass	bc15	infected	NA	Hpi8	C	Hpi8_C	SARS_COV2_8h_14h	8h	barcode15	hpi8_bc15_C	8
-dRNA	NAc	infected	dRNA	dRNA	dRNA	dRNA		NA	NA	dRNA	NA
+SARS_COV2_inf_dRNA_pass NA	infected	dRNA	dRNA	dRNA	dRNA		NA	NA	dRNA	NA
