@@ -23,7 +23,8 @@ plyr::count(all.data$TR.leader)
 
 ##### Data frame of reads with TR, exon and ORF info ##### 
 
-tr.sp <- spread(all.data[,c("TR_ID","sample","qname","strand","exon.composition", "pos_nr","EX_ID","tr.ORF","hpi","Time","TR.leader")], 
+tr.sp <- spread(all.data[,c("TR_ID", "sample", metacols[2:length(metacols)],
+                            "qname","strand","exon.composition", "pos_nr","EX_ID","tr.ORF","TR.leader")], 
                 pos_nr, EX_ID)
 cols <- colnames(tr.sp %>% select(starts_with('position')))
 cols <- cols[order(cols)]
@@ -33,7 +34,7 @@ tr.sp$num_exon <- apply(tr.sp %>% select(starts_with('position')), 1, function(x
 tr.sp$num_switches <- tr.sp$num_exon - 1
 
 
-### Transcirpt non-redundant info
+### Transcript non-redundant info
 tr.ex  <- unique.data.frame(dplyr::select(all.data, -c(sample, qname, hpi, Time)))
 tr.ex$width <- abs(tr.ex$end - tr.ex$start)
 ##
@@ -75,9 +76,6 @@ tr.uni$is.subgenomic[is.element(tr.uni$cluster, c('5_3', '5_non3')) &
 table(tr.uni[,c("is.genomic", "is.subgenomic")] )
 
 ### Number of exons in TRs
-
-#tr.pos <- dplyr::select(tr.uni,c(TR_ID, TR.start, TR.end, is.genomic))
-#tr.pos <- spread(all.data[,c(1,6,7,8,9,10,17,18,19,21)], pos_nr, pos)
 tr.pos <- unique.data.frame(all.data[,c("TR_ID", "pos", "pos_nr")])
 tr.pos <- spread(tr.pos, pos_nr, pos)
 tr.pos <- tr.pos[,c(colnames(tr.pos)[1], cols)]
