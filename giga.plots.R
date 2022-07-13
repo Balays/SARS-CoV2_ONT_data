@@ -4,10 +4,12 @@
 if(!exists('load')) {load <- T}
 
 if (load) { load('all.RData') }
-
+library(ggsci)
+palette <- c(pal_nejm()(8), pal_npg()(10))
 try({ dir.create(fig.dir) })
 
 ## Figure 2. Ratio of sub-genomic / genomic transcripts
+#### ####
 plot.data <- all.data %>% group_by(sample, category) %>% summarise(count=n()) %>% spread(category, count, fill=0)
 #colnames(plot.data)[-1] <- c('non-genomic', 'genomic')
 plot.data$ratio <- plot.data$'sub-genomic' / plot.data$genomic
@@ -27,10 +29,11 @@ gg.clust <- ggplot(plot.data[plot.data$hpi != 'dRNA', ]) +
 gg.clust
 
 ggsave('giga.Fig2.jpg', width = 20, height = 14)
-
+#### ####
+##
 
 ## SuppFig S1 Violinplot of sub-genomic and genomic RNA lengths
-
+#### ####
 tr.stats <- tr.sp[,1:14] #merge(tr.sp[,1:7], tr.uni[,1:4], by='TR_ID')
 colnames(tr.stats)[11] <- "Mapped Length (nt)"
 tr.stats$method <- 'cDNA'
@@ -73,5 +76,8 @@ ggv.dRNA <- ggviolin(tr.stats[tr.stats$method != 'cDNA', ], size = 0.25,
 ggv <- cowplot::plot_grid(ggv.cDNA, ggv.dRNA, rel_widths = c(6,1), align = 'vh', axis = 'tblr')
 
 ggsave('giga.SuppFig_S1.jpg', ggv, width = 24, height = 12)
+#### ####
+##
 
 #### ####
+##
