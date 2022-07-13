@@ -21,6 +21,10 @@ metafilt$hpi <- factor(metafilt$hpi, levels=c('Hpi1', 'Hpi2' ,'Hpi4', 'Hpi6', 'H
                                               'Hpi12', 'Hpi14', 'Hpi16', 'Hpi18', 'Hpi20',
                                               'Hpi24', 'Hpi36', 'Hpi48' ,'Hpi72', 'Hpi96', 'dRNA'))
 
+## which columns of the metadata table to be included in the downstream analysis?
+## The first element of this vector should be sample ID, which should be the same as the .bam file's names.
+metacols <- c('sample_name', 'hpi', 'Time')
+
 #### Settings
 ## Reference genome
 genome <- 'NC_045512.2' 
@@ -88,8 +92,6 @@ if (load) {load(save.data)} else {
                          flag.tokeep = NA, flag.tocrop = NA, seqnames.tofilt = seqnames.tofilt)
   
   
-  bam.sum <- bam.all %>% group_by(sample, strand) %>% summarise(count=n())
-  
   #### ####
 }
 
@@ -97,15 +99,15 @@ if (load) {load(save.data)} else {
 ## Cluster the reads on exact matching in the dataframe of alignments (bam.all)
 source('cluster.reads.R')
  
+## Merge 'Transcripts' with 'Exons'
 all.data <- merge(tr.gt, ex.sp[,c("EX_ID", by, "strand")], by.x=c("start",  "end", "strand"), by.y=c("start",  "end", "strand"), all=T)
+## Merge with reads
 all.data <- merge(all.data, unique.data.frame(bam.filt[,c('qname', 'sample')]), by='qname', all=T)
 all.data <- all.data[!is.na(all.data$qname), ]
-#all.data$seqnames <- genome
+## Merge with metadata
+all.data <- merge(all.data, metafilt[,metacols], by.x='sample', by.y=metacols[1])
 
-
-all.data <- merge(all.data, metafilt[,c("sample_name", "hpi", "Time")], by.x='sample', by.y='sample_name')
 all.data$tr.ORF <- NA
-
 TR.EX    <- unique.data.frame(all.data[,c("EX_ID", "TR_ID",by,"strand")]) 
 #### ####
 
@@ -146,8 +148,8 @@ genomic.tr.df <- as.data.frame(all.data %>% group_by(sample, hpi, Time, is.genom
 genomic.tr.df$ratio <-  genomic.tr.df$'TRUE' / genomic.tr.df$'FALSE' 
 ##
 ##### Data frame of reads with TR, exon and ORF info
-tr.sp <- spread(all.data[,c("TR_ID","sample","qname","strand","exon.composition", 
-                            "num_switches", "pos_nr","EX_ID","tr.ORF","hpi","Time","TR.leader","TR.width","is.genomic", "is.subgenomic", "cluster")],
+tr.sp <- spread(all.data[,c("TR_ID","sample",metacols[2:length(metacols)], "qname","strand","exon.composition", 
+                            "num_switches", "pos_nr","EX_ID","tr.ORF","TR.leader","TR.width","is.genomic", "is.subgenomic", "cluster")],
                 pos_nr, EX_ID)   #c(1,2,3,6,8,9,10,17,18,19,21,24,25,26,27)
 tr.sp <- tr.sp[,c(colnames(tr.sp)[1:14], cols)]
 
