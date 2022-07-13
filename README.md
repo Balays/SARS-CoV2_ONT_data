@@ -23,6 +23,6 @@ For testing pourposes not every *.bam* file is required; the *PRJEB51064_SARS-Co
 
 The scripts can be used with other *.bam* files, reference genomes and/or parameters as well to import, filter and anyalze of alignments in *R*. For example to dereplicate alignments into *Transcripts*. The settings and the "metadata.tsv" file has to be modified accordingly.
 
-minimap2 is has to be in the path for the mapping part, and the required R packages must be installed before the scirpts can be run.
+minimap2 has to be in the path for the mapping part ("minimap.sh"), the genome analysis toolkit (GATK) for the conversion of *.bam* files to *.fastq* ("fastqfrombam.sh"); and the required R packages must be installed before the scirpts can be run.
 
 
