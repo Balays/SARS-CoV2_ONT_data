@@ -49,3 +49,6 @@ wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711476/SARS_COV2_inf_hpi8_bc15_C_pass
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711480/SARS_COV2_inf_hpi96_bc22_A_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711482/SARS_COV2_inf_hpi96_bc23_B_pass.bam
 wget	ftp.sra.ebi.ac.uk/vol1/run/ERR871/ERR8711485/SARS_COV2_inf_hpi96_bc24_C_pass.bam
+
+mkdir .bam.ori
+mv *.bam .bam.ori
